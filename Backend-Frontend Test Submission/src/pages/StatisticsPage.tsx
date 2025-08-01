@@ -13,7 +13,6 @@ import {
   Tooltip,
   Card,
   CardContent,
-  Grid,
   Button,
   Alert,
   TextField,
@@ -114,60 +113,52 @@ export default function StatisticsPage() {
       </Box>
 
       {/* Statistics Cards */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent sx={{ textAlign: 'center' }}>
-              <LinkIcon sx={{ fontSize: 40, color: 'primary.main', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                {totalUrls}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Total URLs
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent sx={{ textAlign: 'center' }}>
-              <MouseIcon sx={{ fontSize: 40, color: 'success.main', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                {totalClicks}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Total Clicks
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent sx={{ textAlign: 'center' }}>
-              <TrendingUpIcon sx={{ fontSize: 40, color: 'info.main', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                {activeUrls}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Active Links
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <Card sx={{ height: '100%' }}>
-            <CardContent sx={{ textAlign: 'center' }}>
-              <ScheduleIcon sx={{ fontSize: 40, color: 'warning.main', mb: 1 }} />
-              <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
-                {expiredUrls}
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Expired Links
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      <Box sx={{ display: 'flex', gap: 3, mb: 4, flexWrap: 'wrap' }}>
+        <Card sx={{ flex: '1 1 200px' }}>
+          <CardContent sx={{ textAlign: 'center' }}>
+            <LinkIcon sx={{ fontSize: 40, color: 'primary.main', mb: 1 }} />
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+              {totalUrls}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Total URLs
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: '1 1 200px' }}>
+          <CardContent sx={{ textAlign: 'center' }}>
+            <MouseIcon sx={{ fontSize: 40, color: 'success.main', mb: 1 }} />
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+              {totalClicks}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Total Clicks
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: '1 1 200px' }}>
+          <CardContent sx={{ textAlign: 'center' }}>
+            <TrendingUpIcon sx={{ fontSize: 40, color: 'info.main', mb: 1 }} />
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+              {activeUrls}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Active Links
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: '1 1 200px' }}>
+          <CardContent sx={{ textAlign: 'center' }}>
+            <ScheduleIcon sx={{ fontSize: 40, color: 'warning.main', mb: 1 }} />
+            <Typography variant="h4" sx={{ fontWeight: 700, mb: 1 }}>
+              {expiredUrls}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              Expired Links
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
 
       {urls.length === 0 ? (
         <Paper sx={{ p: 6, textAlign: 'center', borderRadius: 3 }}>

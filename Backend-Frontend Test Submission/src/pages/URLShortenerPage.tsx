@@ -6,7 +6,6 @@ import {
   Button,
   IconButton,
   Paper,
-  Grid,
   Card,
   CardContent,
   Chip,
@@ -222,41 +221,35 @@ export default function URLShortenerPage() {
       </Box>
 
       {/* Features Cards */}
-      <Grid container spacing={3} sx={{ mb: 6 }}>
-        <Grid item xs={12} md={4}>
-          <Card sx={{ height: '100%', textAlign: 'center', p: 2 }}>
-            <CardContent>
-              <LinkIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
-              <Typography variant="h6" gutterBottom>Custom Short Links</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Create branded short links with custom aliases
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card sx={{ height: '100%', textAlign: 'center', p: 2 }}>
-            <CardContent>
-              <ScheduleIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
-              <Typography variant="h6" gutterBottom>Expiration Control</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Set custom expiration times for your links
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <Card sx={{ height: '100%', textAlign: 'center', p: 2 }}>
-            <CardContent>
-              <SecurityIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
-              <Typography variant="h6" gutterBottom>Click Analytics</Typography>
-              <Typography variant="body2" color="text.secondary">
-                Track clicks and analyze link performance
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-      </Grid>
+      <Box sx={{ display: 'flex', gap: 3, mb: 6, flexWrap: 'wrap' }}>
+        <Card sx={{ flex: '1 1 300px', textAlign: 'center', p: 2 }}>
+          <CardContent>
+            <LinkIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+            <Typography variant="h6" gutterBottom>Custom Short Links</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Create branded short links with custom aliases
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: '1 1 300px', textAlign: 'center', p: 2 }}>
+          <CardContent>
+            <ScheduleIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+            <Typography variant="h6" gutterBottom>Expiration Control</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Set custom expiration times for your links
+            </Typography>
+          </CardContent>
+        </Card>
+        <Card sx={{ flex: '1 1 300px', textAlign: 'center', p: 2 }}>
+          <CardContent>
+            <SecurityIcon sx={{ fontSize: 40, color: 'primary.main', mb: 2 }} />
+            <Typography variant="h6" gutterBottom>Click Analytics</Typography>
+            <Typography variant="body2" color="text.secondary">
+              Track clicks and analyze link performance
+            </Typography>
+          </CardContent>
+        </Card>
+      </Box>
 
       {/* URL Shortening Form */}
       <Paper sx={{ p: 4, borderRadius: 3 }}>
@@ -289,35 +282,33 @@ export default function URLShortenerPage() {
                 )}
               </Box>
               
-              <Grid container spacing={2}>
-                <Grid item xs={12}>
-                  <TextField
-                    name="longURL"
-                    label="Original URL"
-                    placeholder="https://example.com/very-long-url"
-                    value={input.longURL}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                      handleInputChange(index, e)
-                    }
-                    variant="outlined"
-                    fullWidth
-                    required
-                    error={input.longURL && !isValidURL(input.longURL)}
-                    helperText={
-                      input.longURL && !isValidURL(input.longURL)
-                        ? "Please enter a valid URL starting with http:// or https://"
-                        : ""
-                    }
-                    InputProps={{
-                      startAdornment: (
-                        <InputAdornment position="start">
-                          <LinkIcon color="action" />
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                <TextField
+                  name="longURL"
+                  label="Original URL"
+                  placeholder="https://example.com/very-long-url"
+                  value={input.longURL}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    handleInputChange(index, e)
+                  }
+                  variant="outlined"
+                  fullWidth
+                  required
+                  error={Boolean(input.longURL && !isValidURL(input.longURL))}
+                  helperText={
+                    input.longURL && !isValidURL(input.longURL)
+                      ? "Please enter a valid URL starting with http:// or https://"
+                      : ""
+                  }
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <LinkIcon color="action" />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                   <TextField
                     name="customShortcode"
                     label="Custom Shortcode (Optional)"
@@ -327,11 +318,9 @@ export default function URLShortenerPage() {
                       handleInputChange(index, e)
                     }
                     variant="outlined"
-                    fullWidth
+                    sx={{ flex: '1 1 250px' }}
                     helperText="Leave empty for auto-generated code"
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
                   <TextField
                     name="validity"
                     label="Validity (minutes)"
@@ -341,14 +330,14 @@ export default function URLShortenerPage() {
                     }
                     variant="outlined"
                     type="number"
-                    fullWidth
+                    sx={{ flex: '1 1 200px' }}
                     InputProps={{
                       inputProps: { min: 1, max: 525600 } // Max 1 year
                     }}
                     helperText="Link expiration time in minutes"
                   />
-                </Grid>
-              </Grid>
+                </Box>
+              </Box>
             </Paper>
           ))}
 

@@ -14,6 +14,7 @@ import { LinkRounded, BarChart } from '@mui/icons-material';
 import URLShortenerPage from './pages/URLShortenerPage';
 import StatisticsPage from './pages/StatisticsPage';
 import RedirectPage from './pages/RedirectPage';
+import './App.css';
 
 // Create a modern theme
 const theme = createTheme({
